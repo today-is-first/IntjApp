@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import styled from 'styled-components';
+import COLORS from './constants/colors';
+import * as Font from 'expo-font';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './pages/Home';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+async function loadFonts() {
+  await Font.loadAsync({
+    Pretendard: require('./assets/fonts/Pretendard-Regular.ttf'),
+  });
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Stack = createNativeStackNavigator();
+
+const AppView = styled.View`
+  font-family: 'Pretendard';
+  background-color: ${COLORS.mainBackGround};
+  flex: 1;
+  padding: 0;
+  margin: 0;
+`;
+
+const customStackNavigaionOptions = {
+  headerShown: false,
+};
+
+export default function App() {
+  loadFonts();
+  return (
+    <NavigationContainer>
+      <AppView>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={customStackNavigaionOptions}
+        >
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </AppView>
+    </NavigationContainer>
+  );
+}
