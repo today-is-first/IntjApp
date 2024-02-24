@@ -1,3 +1,4 @@
+import React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
 const MoreVertIcon = ({ width = '24', height = '24', fill }) => (
@@ -15,4 +16,4 @@ const MoreVertIcon = ({ width = '24', height = '24', fill }) => (
   </Svg>
 );
 
-export default MoreVertIcon;
+export default React.memo(MoreVertIcon);

@@ -1,3 +1,4 @@
+import React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
 const ArrowLeftIcon = ({ width = '24', height = '24', fill }) => (
@@ -15,4 +16,4 @@ const ArrowLeftIcon = ({ width = '24', height = '24', fill }) => (
   </Svg>
 );
 
-export default ArrowLeftIcon;
+export default React.memo(ArrowLeftIcon);

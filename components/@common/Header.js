@@ -8,7 +8,7 @@ import COLORS from '../../constants/colors';
 import { TouchableOpacity } from 'react-native';
 
 const HeaderView = styled.View`
-  padding: 48px 24px 24px;
+  padding: 48px 12px 24px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

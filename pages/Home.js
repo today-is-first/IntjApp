@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TodayEffort from '../components/Home/TodayEffort';
 import COLORS from '../constants/colors';
 import Header from '../components/@common/Header';
+import TodoList from '../components/Home/TodoList';
 
 const HomeView = styled.View`
   background-color: ${COLORS.mainBackGround};
@@ -14,6 +15,7 @@ const Home = () => {
     <HomeView>
       <Header arrow={false} volume={false} search={true} moreVert={true} />
       <TodayEffort />
+      <TodoList />
     </HomeView>
   );
 };

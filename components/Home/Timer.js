@@ -26,10 +26,10 @@ const TimerButtonWrapper = styled.View`
 `;
 
 const TimerTouchWrapper = styled(TouchableOpacity)`
-  padding: 12px 24px;
+  padding: 12px 24px 6px;
 `;
 const ArrowTouchWrapper = styled(TouchableOpacity)`
-  padding: 6px 18px;
+  padding: 6px 18px 0px;
 `;
 
 const Timer = () => {

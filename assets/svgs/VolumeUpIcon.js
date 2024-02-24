@@ -1,3 +1,4 @@
+import React from 'react';
 import Svg, { Path } from 'react-native-svg';
 
 const VolumeUpIcon = ({ width = '24', height = '24', fill }) => (
@@ -15,4 +16,4 @@ const VolumeUpIcon = ({ width = '24', height = '24', fill }) => (
   </Svg>
 );
 
-export default VolumeUpIcon;
+export default React.memo(VolumeUpIcon);
