@@ -7,6 +7,7 @@ const COLORS = {
   bottomSheetBackGround: '#1C1E1F',
   bottomSheetModal: '#2C2D34',
   bottomSheetChoiceModal: '#26272F',
+  numoMain,
 };
 
 export default COLORS;

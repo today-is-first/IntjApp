@@ -5,8 +5,8 @@ import Timer from './Timer';
 
 const TodayEffortView = styled.View`
   margin: 0 18px;
-  padding: 12px 24px;
-  border-radius: 10px;
+  padding: 18px 30px;
+  border-radius: 24px;
   background-color: ${COLORS.bottomSheetBackGround};
   justify-content: center;
 `;
@@ -19,7 +19,7 @@ const TodayEffortTopView = styled.View`
 
 const TodayEffortTitle = styled.Text`
   color: ${COLORS.textWhite};
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
 `;
 
