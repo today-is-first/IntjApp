@@ -21,6 +21,7 @@ const TimerButtonWrapper = styled.View`
 const TimerTouchWrapper = styled(TouchableOpacity)`
   padding: 12px 24px;
 `;
+
 const TimerButtonText = React.memo(styled.Text`
   color: ${COLORS.textWhite};
 `);
