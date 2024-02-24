@@ -5,10 +5,16 @@ import Timer from './Timer';
 
 const TodayEffortView = styled.View`
   margin: 0 18px;
-  padding: 18px 30px;
   border-radius: 24px;
   background-color: ${COLORS.bottomSheetBackGround};
   justify-content: center;
+  padding: 18px 30px;
+  border-radius: 24px;
+  border-left-color: rgba(160, 160, 160, 0.2);
+  border-top-color: rgba(160, 160, 160, 0.2);
+  border-right-color: rgba(60, 60, 60, 0.2);
+  border-bottom-color: rgba(60, 60, 60, 0.2);
+  border-width: 2px;
 `;
 
 const TodayEffortTopView = styled.View`

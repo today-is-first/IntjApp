@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import ArrowLeftIcon from '../../assets/svgs/ArrowLeftIcon';
-import VolumeUpIcon from '../../assets/svgs/VolumeUpIcon';
-import MoreVertIcon from '../../assets/svgs/MoreVertIcon';
-import SearchIcon from '../../assets/svgs/SearchIcon';
+import ArrowLeftIcon from '../../assets/svgs/header/ArrowLeftIcon';
+import VolumeUpIcon from '../../assets/svgs/header/VolumeUpIcon';
+import MoreVertIcon from '../../assets/svgs/header/MoreVertIcon';
+import SearchIcon from '../../assets/svgs/header/SearchIcon';
 import COLORS from '../../constants/colors';
 import { TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const HeaderView = styled.View`
   padding: 48px 12px 24px;
@@ -25,11 +26,12 @@ const IconTouchWrapper = styled(TouchableOpacity)`
 const HeaderBlank = styled.View``;
 
 const Header = ({ arrow, volume, search, moreVert }) => {
+  const navigation = useNavigation();
   return (
     <HeaderView>
       <HeaderLeft>
         {arrow ? (
-          <IconTouchWrapper>
+          <IconTouchWrapper onPress={() => navigation.goBack()}>
             <ArrowLeftIcon width="30px" height="30px" fill={COLORS.iconWhite} />
           </IconTouchWrapper>
         ) : (

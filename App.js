@@ -4,6 +4,7 @@ import * as Font from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './pages/Home';
+import Edit from './pages/Edit';
 
 async function loadFonts() {
   await Font.loadAsync({
@@ -35,6 +36,7 @@ export default function App() {
           screenOptions={customStackNavigaionOptions}
         >
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Edit" component={Edit} />
         </Stack.Navigator>
       </AppView>
     </NavigationContainer>
