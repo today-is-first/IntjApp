@@ -28,7 +28,7 @@ const EditContent = styled.TextInput`
   text-align: right;
 `;
 
-const EditTitle = () => {
+const EditTitle = ({ setPage }) => {
   const inputRef = useRef(null);
   const [text, setText] = useState('토익 영어 단어 외우기');
   return (
@@ -38,7 +38,11 @@ const EditTitle = () => {
         ref={inputRef}
         onChangeText={setText}
         value={text}
-        onBlur={() => inputRef.current.blur()}
+        onBlur={() => {
+          inputRef.current.blur();
+          setPage((state) => [...state, 'time']);
+        }}
+        autoFocus={true}
         maxLength={24}
       />
     </EditTitleView>

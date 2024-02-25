@@ -2,10 +2,11 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 import COLORS from '../../constants/colors';
+import Date from '../../utils/DatePicker';
 
 const EditTimeView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};
-  margin: 24px 24px 0px;
+  margin: 0px 24px 24px;
   padding: 18px 30px;
   border-radius: 24px;
   border-top-color: rgba(1, 0, 254, 0.5);
@@ -22,26 +23,13 @@ const EditText = styled.Text`
   margin-bottom: 16px;
 `;
 
-const EditContent = styled.TextInput`
-  font-size: 16px;
-  color: ${COLORS.grayText};
-  font-weight: 500;
-  text-align: right;
-`;
-
-const EditTime = () => {
+const EditTime = ({ setPage }) => {
   const inputRef = useRef(null);
   const [text, setText] = useState('토익 영어 단어 외우기');
   return (
     <EditTimeView onPress={() => inputRef.current && inputRef.current.focus()}>
       <EditText>시간</EditText>
-      <EditContent
-        ref={inputRef}
-        onChangeText={setText}
-        value={text}
-        onBlur={() => inputRef.current.blur()}
-        maxLength={24}
-      />
+      <Date />
     </EditTimeView>
   );
 };

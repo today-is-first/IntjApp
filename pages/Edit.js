@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import COLORS from '../constants/colors';
 import Header from '../components/@common/Header';
@@ -15,14 +15,15 @@ const EditPageView = styled.View`
 const EditView = styled.View``;
 
 const Edit = () => {
+  const [page, setPage] = useState([]);
   return (
     <EditPageView>
       <Header arrow={true} moreVert={true} />
       <EditView>
-        <EditTitle />
-        <EditTime />
-        <EditType />
-        <EditContent />
+        {page.includes('content') ? <EditContent setPage={setPage} /> : ''}
+        {page.includes('type') ? <EditType setPage={setPage} /> : ''}
+        {page.includes('time') ? <EditTime setPage={setPage} /> : ''}
+        <EditTitle setPage={setPage} />
       </EditView>
     </EditPageView>
   );
