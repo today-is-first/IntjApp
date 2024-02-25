@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import COLORS from '../../constants/colors';
 import { TouchableOpacity } from 'react-native';
 import FoodIcon from '../../assets/svgs/todoList/FoodIcon';
 import SportIcon from '../../assets/svgs/todoList/SportIcon';
 import StudyIcon from '../../assets/svgs/todoList/StudyIcon';
-import { useNavigation } from '@react-navigation/native';
-import useTodoListStore from '../../store/TodoListStore';
+import TodoDetail from './TodoDetail';
 
 const TodoCardView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};
   margin: 24px 6px 0px;
   padding: 16px 24px;
   border-radius: 24px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   border-top-color: rgba(1, 0, 254, 0.5);
   border-left-color: rgba(1, 0, 254, 0.5);
   border-bottom-color: rgba(1, 0, 254, 1);
   border-right-color: rgba(1, 0, 254, 1);
-  border-width: ${(props) => (props.isActive ? '1px' : '0')};
+  border-width: ${(props) => (props.isSuccess ? '0' : '1px')};
+`;
+
+const PreviewWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: 'center';
 `;
 
 const CardLeftWrapper = styled.View`
@@ -31,13 +33,13 @@ const CardLeftWrapper = styled.View`
 `;
 
 const TodoCardTime = styled.Text`
-  color: ${(props) => (props.isActive ? COLORS.pointColor : COLORS.grayText)};
+  color: ${(props) => (props.isSuccess ? COLORS.grayText : COLORS.pointColor)};
   font-size: 14px;
   font-weight: 400;
 `;
 
 const TodoCardText = styled.Text`
-  color: ${(props) => (props.isActive ? COLORS.pointColor : COLORS.grayText)};
+  color: ${(props) => (props.isSuccess ? COLORS.grayText : COLORS.pointColor)};
   font-size: 16px;
   font-weight: 600;
 `;
@@ -48,30 +50,36 @@ const icons = {
   음식: FoodIcon,
 };
 
-const IconSwitcher = ({ type, isActive }) => {
+const IconSwitcher = ({ type, isSuccess }) => {
   const SelectedIcon = icons[type] || StudyIcon;
   return (
     <SelectedIcon
       width="16px"
       height="16px"
-      fill={isActive ? COLORS.pointColor : COLORS.grayText}
+      fill={isSuccess ? COLORS.grayText : COLORS.pointColor}
     />
   );
 };
 
-const TodoCard = ({ id, title, time, type }) => {
-  const navigation = useNavigation();
-  const todoId = useTodoListStore((state) => state.todoId);
+const TodoCard = ({ id, title, time, type, content, isSuccess }) => {
+  const [isPressed, setIsPressed] = useState(false);
   return (
     <TodoCardView
-      isActive={todoId === id}
-      onPress={() => navigation.navigate('Edit')}
+      isSuccess={isSuccess}
+      onPress={() => setIsPressed(!isPressed)}
     >
-      <CardLeftWrapper>
-        {IconSwitcher({ type, isActive: todoId === id })}
-        <TodoCardTime isActive={todoId === id}>{time}</TodoCardTime>
-      </CardLeftWrapper>
-      <TodoCardText isActive={todoId === id}>{title}</TodoCardText>
+      <PreviewWrapper>
+        <CardLeftWrapper>
+          {IconSwitcher({ type, isSuccess: isSuccess })}
+          <TodoCardTime isSuccess={isSuccess}>{time}</TodoCardTime>
+        </CardLeftWrapper>
+        <TodoCardText isSuccess={isSuccess}>{title}</TodoCardText>
+      </PreviewWrapper>
+      {isPressed ? (
+        <TodoDetail id={id} content={content} isSuccess={isSuccess} />
+      ) : (
+        ''
+      )}
     </TodoCardView>
   );
 };

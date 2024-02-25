@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 import COLORS from '../../constants/colors';
 
-const EditTitleView = styled(TouchableOpacity)`
+const EditTimeView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};
-  margin: 0px 24px 0px;
+  margin: 24px 24px 0px;
   padding: 18px 30px;
   border-radius: 24px;
   border-top-color: rgba(1, 0, 254, 0.5);
@@ -14,6 +14,7 @@ const EditTitleView = styled(TouchableOpacity)`
   border-right-color: rgba(1, 0, 254, 1);
   border-width: 1px;
 `;
+
 const EditText = styled.Text`
   font-size: 20px;
   color: ${COLORS.pointColor};
@@ -28,12 +29,12 @@ const EditContent = styled.TextInput`
   text-align: right;
 `;
 
-const EditTitle = () => {
+const EditTime = () => {
   const inputRef = useRef(null);
   const [text, setText] = useState('토익 영어 단어 외우기');
   return (
-    <EditTitleView onPress={() => inputRef.current && inputRef.current.focus()}>
-      <EditText>오늘 할 것</EditText>
+    <EditTimeView onPress={() => inputRef.current && inputRef.current.focus()}>
+      <EditText>시간</EditText>
       <EditContent
         ref={inputRef}
         onChangeText={setText}
@@ -41,8 +42,8 @@ const EditTitle = () => {
         onBlur={() => inputRef.current.blur()}
         maxLength={24}
       />
-    </EditTitleView>
+    </EditTimeView>
   );
 };
 
-export default EditTitle;
+export default EditTime;
