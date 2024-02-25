@@ -20,10 +20,22 @@ const Edit = () => {
     <EditPageView>
       <Header arrow={true} moreVert={true} />
       <EditView>
-        {page.includes('content') ? <EditContent setPage={setPage} /> : ''}
-        {page.includes('type') ? <EditType setPage={setPage} /> : ''}
-        {page.includes('time') ? <EditTime setPage={setPage} /> : ''}
-        <EditTitle setPage={setPage} />
+        {page.includes('content') ? (
+          <EditContent setPage={setPage} page={page} />
+        ) : (
+          ''
+        )}
+        {page.includes('type') ? (
+          <EditType setPage={setPage} page={page} />
+        ) : (
+          ''
+        )}
+        {page.includes('time') ? (
+          <EditTime setPage={setPage} page={page} />
+        ) : (
+          ''
+        )}
+        <EditTitle setPage={setPage} page={page} />
       </EditView>
     </EditPageView>
   );

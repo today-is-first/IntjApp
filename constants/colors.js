@@ -8,6 +8,7 @@ const COLORS = {
   bottomSheetModal: '#2C2D34',
   bottomSheetChoiceModal: '#26272F',
   grayText: '#6D6D7A',
+  whiteGray: '#999999',
 };
 
 export default COLORS;

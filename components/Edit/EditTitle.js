@@ -12,11 +12,12 @@ const EditTitleView = styled(TouchableOpacity)`
   border-left-color: rgba(1, 0, 254, 0.5);
   border-bottom-color: rgba(1, 0, 254, 1);
   border-right-color: rgba(1, 0, 254, 1);
-  border-width: 1px;
+  border-width: ${(props) => (props.page.length > 0 ? '0px' : '1px')};
 `;
 const EditText = styled.Text`
   font-size: 20px;
-  color: ${COLORS.pointColor};
+  color: ${(props) =>
+    props.page.length > 0 ? COLORS.grayText : COLORS.pointColor};
   font-weight: 700;
   margin-bottom: 16px;
 `;
@@ -28,12 +29,15 @@ const EditContent = styled.TextInput`
   text-align: right;
 `;
 
-const EditTitle = ({ setPage }) => {
+const EditTitle = ({ setPage, page }) => {
   const inputRef = useRef(null);
   const [text, setText] = useState('토익 영어 단어 외우기');
   return (
-    <EditTitleView onPress={() => inputRef.current && inputRef.current.focus()}>
-      <EditText>오늘 할 것</EditText>
+    <EditTitleView
+      onPress={() => inputRef.current && inputRef.current.focus()}
+      page={page}
+    >
+      <EditText page={page}>오늘 할 것</EditText>
       <EditContent
         ref={inputRef}
         onChangeText={setText}
@@ -44,6 +48,7 @@ const EditTitle = ({ setPage }) => {
         }}
         autoFocus={true}
         maxLength={24}
+        page={page}
       />
     </EditTitleView>
   );

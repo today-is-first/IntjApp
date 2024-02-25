@@ -13,31 +13,30 @@ const TodoDetailView = styled.View`
 const ContentView = styled.View`
   margin-top: 12px;
 `;
-const ContentText = styled.Text`
-  color: ${(props) => (props.isSuccess ? COLORS.grayText : COLORS.pointColor)};
-`;
 const TodoContent = styled.Text`
   align-self: center;
   color: ${(props) => (props.isSuccess ? COLORS.grayText : COLORS.pointColor)};
   text-align: center;
-  margin-top: 12px;
+  margin: 12px 0;
   max-width: 210px;
 `;
 
 const EditButton = styled(TouchableOpacity)`
-  margin-top: 18px;
+  margin-top: 6px;
   padding: 8px 18px;
   border-radius: 12px;
   background-color: ${(props) =>
     props.isSuccess ? COLORS.grayText : COLORS.pointColor};
   align-self: flex-end;
+  align-items: center;
+  justify-content: center;
 `;
 
 const EditButtonText = styled.Text`
   color: ${COLORS.textWhite};
   text-align: center;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 900;
 `;
 
 const TodoDetail = ({ id, content, isSuccess }) => {
@@ -45,9 +44,6 @@ const TodoDetail = ({ id, content, isSuccess }) => {
   return (
     <TodoDetailView isSuccess={isSuccess}>
       <ContentView>
-        <ContentText isSuccess={isSuccess}>
-          {isSuccess ? '해낸 것' : '해낼 것'}
-        </ContentText>
         <TodoContent isSuccess={isSuccess}>{content}</TodoContent>
       </ContentView>
       {isSuccess ? (
