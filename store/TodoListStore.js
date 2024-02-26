@@ -3,6 +3,14 @@ import { create } from 'zustand';
 const useTodoListStore = create((set) => ({
   todoId: 0,
   increaseTodoId: (id) => set((prev) => ({ todoId: prev.todoId + 1 })),
+  editTitle: '',
+  setEditTitle: (val) => set({ editTitle: val }),
+  editTime: '',
+  setEditTime: (val) => set({ editTime: val }),
+  editType: '',
+  setEditType: (val) => set({ editType: val }),
+  editContent: '',
+  setEditContent: (val) => set({ editContent: val }),
   todoList: [
     {
       id: 0,
@@ -20,8 +28,29 @@ const useTodoListStore = create((set) => ({
       content: '유산소 30분, 무산소 1시간, 식후 프로틴 필수',
       isSuccess: false,
     },
+    {
+      id: 2,
+      title: '점심엔 햄버거',
+      time: '13:00',
+      type: '밥',
+      content: '야무지게 먹어야지~',
+      isSuccess: false,
+    },
   ],
-  setTodoList: (todo) => set((prev) => ({ ...prev.todoList, todo })),
+  updateTodo: (id) =>
+    set((prev) => ({
+      todoList: prev.todoList.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              title: prev.editTitle,
+              time: prev.editTime,
+              type: prev.editType,
+              content: prev.editContent,
+            }
+          : todo,
+      ),
+    })),
 }));
 
 export default useTodoListStore;

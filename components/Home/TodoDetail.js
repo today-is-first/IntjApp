@@ -49,7 +49,7 @@ const TodoDetail = ({ id, content, isSuccess }) => {
       {isSuccess ? (
         ''
       ) : (
-        <EditButton onPress={() => navigation.navigate('Edit')}>
+        <EditButton onPress={() => navigation.navigate('Edit', { id: id })}>
           <EditButtonText>수정</EditButtonText>
         </EditButton>
       )}

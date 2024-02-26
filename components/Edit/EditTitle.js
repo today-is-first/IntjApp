@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 import COLORS from '../../constants/colors';
+import useTodoListStore from '../../store/TodoListStore';
 
 const EditTitleView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};
@@ -29,9 +30,10 @@ const EditContent = styled.TextInput`
   text-align: right;
 `;
 
-const EditTitle = ({ setPage, page }) => {
+const EditTitle = ({ setPage, page, title }) => {
+  const setEditTitle = useTodoListStore((state) => state.setEditTitle);
   const inputRef = useRef(null);
-  const [text, setText] = useState('토익 영어 단어 외우기');
+  const [text, setText] = useState(title);
   return (
     <EditTitleView
       onPress={() => inputRef.current && inputRef.current.focus()}
@@ -45,6 +47,7 @@ const EditTitle = ({ setPage, page }) => {
         onBlur={() => {
           inputRef.current.blur();
           setPage((state) => [...state, 'time']);
+          setEditTitle(text);
         }}
         autoFocus={true}
         maxLength={24}

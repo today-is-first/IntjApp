@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 import COLORS from '../../constants/colors';
+import useTodoListStore from '../../store/TodoListStore';
 
 const EditContentView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};
@@ -17,7 +18,8 @@ const EditContentView = styled(TouchableOpacity)`
 
 const EditText = styled.Text`
   font-size: 20px;
-  color: ${COLORS.pointColor};
+  color: ${(props) =>
+    props.page.length > 3 ? COLORS.grayText : COLORS.pointColor};
   font-weight: 700;
   margin-bottom: 16px;
 `;
@@ -29,20 +31,23 @@ const EditContentText = styled.TextInput`
   text-align: right;
 `;
 
-const EditContent = () => {
+const EditContent = ({ setPage, page, content }) => {
+  const setEditContent = useTodoListStore((state) => state.setEditContent);
   const inputRef = useRef(null);
-  const [text, setText] = useState('토익 영어 단어 외우기');
+  const [text, setText] = useState(content);
   return (
     <EditContentView
       onPress={() => inputRef.current && inputRef.current.focus()}
     >
-      <EditText>내용</EditText>
+      <EditText page={page}>내용</EditText>
       <EditContentText
         ref={inputRef}
         onChangeText={setText}
         value={text}
         onBlur={() => {
           inputRef.current.blur();
+          setPage((state) => [...state, 'submit']);
+          setEditContent(text);
         }}
         autoFocus={true}
         maxLength={24}

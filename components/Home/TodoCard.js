@@ -47,7 +47,7 @@ const TodoCardText = styled.Text`
 const icons = {
   공부: StudyIcon,
   운동: SportIcon,
-  음식: FoodIcon,
+  밥: FoodIcon,
 };
 
 const IconSwitcher = ({ type, isSuccess }) => {
@@ -73,7 +73,9 @@ const TodoCard = ({ id, title, time, type, content, isSuccess }) => {
           {IconSwitcher({ type, isSuccess: isSuccess })}
           <TodoCardTime isSuccess={isSuccess}>{time}</TodoCardTime>
         </CardLeftWrapper>
-        <TodoCardText isSuccess={isSuccess}>{title}</TodoCardText>
+        <TodoCardText isSuccess={isSuccess}>
+          {title.length > 11 ? title.slice(0, 11) + '...' : title}
+        </TodoCardText>
       </PreviewWrapper>
       {isPressed ? (
         <TodoDetail id={id} content={content} isSuccess={isSuccess} />

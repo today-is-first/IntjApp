@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 import COLORS from '../../constants/colors';
@@ -14,6 +14,23 @@ const EditTimeView = styled.View`
   border-bottom-color: rgba(1, 0, 254, 1);
   border-right-color: rgba(1, 0, 254, 1);
   border-width: ${(props) => (props.page.length > 1 ? '0px' : '1px')};
+  justify-content: center;
+`;
+const EditTopView = styled.View`
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+`;
+
+const PickerView = styled.View``;
+const SubmitButton = styled(TouchableOpacity)`
+  padding: 8px 16px;
+  border-radius: 12px;
+  text-align: center;
+  background-color: ${COLORS.pointColor};
+`;
+const SubmitText = styled.Text`
+  color: ${COLORS.textWhite};
 `;
 
 const EditText = styled.Text`
@@ -24,13 +41,18 @@ const EditText = styled.Text`
   margin-bottom: 16px;
 `;
 
-const EditTime = ({ setPage, page }) => {
-  const inputRef = useRef(null);
-  const [text, setText] = useState('토익 영어 단어 외우기');
+const EditTime = ({ setPage, page, time }) => {
   return (
     <EditTimeView page={page}>
-      <EditText page={page}>시간</EditText>
-      <Picker />
+      <EditTopView>
+        <EditText page={page}>시간</EditText>
+        <SubmitButton onPress={() => setPage((state) => [...state, 'type'])}>
+          <SubmitText>설정</SubmitText>
+        </SubmitButton>
+      </EditTopView>
+      <PickerView>
+        <Picker prevTime={time} />
+      </PickerView>
     </EditTimeView>
   );
 };

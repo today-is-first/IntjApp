@@ -43,7 +43,10 @@ const TodoList = () => {
     <TodoListView>
       <TodoListTopView>
         <TodoListTitle>To Do List</TodoListTitle>
-        <TodoListAmount>1 /12</TodoListAmount>
+        <TodoListAmount>
+          {todoList.reduce((acc, cur) => (cur.isSuccess ? acc + 1 : acc), 0)}/
+          {todoList.length}
+        </TodoListAmount>
       </TodoListTopView>
       <TodoCardWrapper>
         {todoList.map((todo) => (
