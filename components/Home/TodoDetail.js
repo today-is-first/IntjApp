@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import COLORS from '../../constants/colors';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import useTodoListStore from '../../store/TodoListStore';
 
 const TodoDetailView = styled.View`
   margin-top: 16px;
@@ -32,6 +33,17 @@ const EditButton = styled(TouchableOpacity)`
   justify-content: center;
 `;
 
+const SuccessButton = styled(TouchableOpacity)`
+  margin-top: 6px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  background-color: ${(props) =>
+    props.isSuccess ? COLORS.grayText : COLORS.pointColor};
+  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
+`;
+
 const EditButtonText = styled.Text`
   color: ${COLORS.textWhite};
   text-align: center;
@@ -39,8 +51,14 @@ const EditButtonText = styled.Text`
   font-weight: 900;
 `;
 
+const ButtonWrapper = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const TodoDetail = ({ id, content, isSuccess }) => {
   const navigation = useNavigation();
+  const setSuccess = useTodoListStore((state) => state.setSuccess);
   return (
     <TodoDetailView isSuccess={isSuccess}>
       <ContentView>
@@ -49,9 +67,14 @@ const TodoDetail = ({ id, content, isSuccess }) => {
       {isSuccess ? (
         ''
       ) : (
-        <EditButton onPress={() => navigation.navigate('Edit', { id: id })}>
-          <EditButtonText>수정</EditButtonText>
-        </EditButton>
+        <ButtonWrapper>
+          <EditButton onPress={() => navigation.navigate('Edit', { id: id })}>
+            <EditButtonText>수정</EditButtonText>
+          </EditButton>
+          <SuccessButton onPress={() => setSuccess(id)}>
+            <EditButtonText>성공</EditButtonText>
+          </SuccessButton>
+        </ButtonWrapper>
       )}
     </TodoDetailView>
   );

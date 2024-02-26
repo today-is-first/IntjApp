@@ -37,6 +37,12 @@ const useTodoListStore = create((set) => ({
       isSuccess: false,
     },
   ],
+  setSuccess: (id) =>
+    set((prev) => ({
+      todoList: prev.todoList.map((todo) =>
+        todo.id === id ? { ...todo, isSuccess: true } : todo,
+      ),
+    })),
   updateTodo: (id) =>
     set((prev) => ({
       todoList: prev.todoList.map((todo) =>
