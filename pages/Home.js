@@ -6,6 +6,7 @@ import Header from '../components/@common/Header';
 import TodoList from '../components/Home/TodoList';
 import { ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AddIcon from '../assets/svgs/todoList/AddIcon';
 
 const HomeView = styled.View`
   background-color: ${COLORS.mainBackGround};
@@ -14,14 +15,14 @@ const HomeView = styled.View`
 
 const NewTodoButton = styled(TouchableOpacity)`
   position: absolute;
-  padding: 28px;
+  padding: 6px;
   right: 24px;
-  bottom: 80px;
+  bottom: 60px;
   border-radius: 50px;
-  background-color: ${COLORS.bottomSheetBackGround};
+  background-color: ${COLORS.textWhite};
   border-width: 1px;
-  border-left-color: rgba(160, 160, 160, 0.1);
-  border-top-color: rgba(160, 160, 160, 0.1);
+  border-left-color: rgba(160, 160, 160, 0.2);
+  border-top-color: rgba(160, 160, 160, 0.2);
   border-right-color: rgba(60, 60, 60, 0.2);
   border-bottom-color: rgba(60, 60, 60, 0.2);
 `;
@@ -35,7 +36,9 @@ const Home = () => {
         <TodayEffort />
         <TodoList />
       </ScrollView>
-      <NewTodoButton onPress={() => navigation.navigate('Edit')} />
+      <NewTodoButton onPress={() => navigation.navigate('Edit')}>
+        <AddIcon width="36px" height="36px" fill={COLORS.mainBackGround} />
+      </NewTodoButton>
     </HomeView>
   );
 };
