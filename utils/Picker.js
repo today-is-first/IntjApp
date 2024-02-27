@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DateTimePicker from '@mohalla-tech/react-native-date-time-picker';
 import COLORS from '../constants/colors';
@@ -8,7 +8,9 @@ const PickerView = styled.View``;
 
 const Picker = ({ prevTime }) => {
   const setEditTime = useTodoListStore((state) => state.setEditTime);
-  const initTime = new Date(prevTime);
+  const initTime = prevTime
+    ? new Date(prevTime)
+    : new Date(new Date().setMinutes(0));
   const onTimeChange = (selectedTime) => {
     setEditTime(selectedTime.getTime());
   };

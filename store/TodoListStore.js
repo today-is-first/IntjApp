@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 const useTodoListStore = create((set) => ({
-  todoId: 0,
+  todoId: 3,
   increaseTodoId: (id) => set((prev) => ({ todoId: prev.todoId + 1 })),
   editTitle: '',
   setEditTitle: (val) => set({ editTitle: val }),
@@ -58,6 +58,20 @@ const useTodoListStore = create((set) => ({
             : todo,
         )
         .sort((a, b) => a.time - b.time),
+    })),
+  addTodo: () =>
+    set((prev) => ({
+      todoList: [
+        ...prev.todoList,
+        {
+          id: prev.todoId + 1,
+          title: prev.editTitle,
+          time: prev.editTime,
+          type: prev.editType,
+          content: prev.editContent,
+        },
+      ],
+      todoId: prev.todoId + 1,
     })),
 }));
 

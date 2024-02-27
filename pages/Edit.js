@@ -34,10 +34,15 @@ const Edit = () => {
   const navigation = useNavigation();
   const [page, setPage] = useState([]);
   const route = useRoute();
-  const { id } = route.params;
-  const todoList = useTodoListStore((state) => state.todoList);
-  const todo = todoList.filter((el) => el.id === id);
-  const updateTodo = useTodoListStore((state) => state.updateTodo);
+  const id = route.params?.id;
+  const [todoList, updateTodo, addTodo] = useTodoListStore((state) => [
+    state.todoList,
+    state.updateTodo,
+    state.addTodo,
+  ]);
+  const todo = id
+    ? todoList.find((el) => el.id === id)
+    : { title: '', time: '', type: '', content: '' };
 
   return (
     <EditPageView>
@@ -46,7 +51,7 @@ const Edit = () => {
         {page.includes('submit') ? (
           <SubmitButton
             onPress={() => {
-              updateTodo(id);
+              id ? updateTodo(id) : addTodo();
               navigation.navigate('Home');
             }}
           >
@@ -57,37 +62,21 @@ const Edit = () => {
         )}
 
         {page.includes('content') ? (
-          <EditContent
-            setPage={setPage}
-            page={page}
-            content={todo ? todo[0].content : ''}
-          />
+          <EditContent setPage={setPage} page={page} content={todo.content} />
         ) : (
           ''
         )}
         {page.includes('type') ? (
-          <EditType
-            setPage={setPage}
-            page={page}
-            type={todo ? todo[0].type : ''}
-          />
+          <EditType setPage={setPage} page={page} type={todo.type} />
         ) : (
           ''
         )}
         {page.includes('time') ? (
-          <EditTime
-            setPage={setPage}
-            page={page}
-            time={todo ? todo[0].time : ''}
-          />
+          <EditTime setPage={setPage} page={page} time={todo.time} />
         ) : (
           ''
         )}
-        <EditTitle
-          setPage={setPage}
-          page={page}
-          title={todo ? todo[0].title : ''}
-        />
+        <EditTitle setPage={setPage} page={page} title={todo.title} />
       </EditView>
     </EditPageView>
   );
