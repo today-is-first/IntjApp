@@ -8,15 +8,9 @@ const PickerView = styled.View``;
 
 const Picker = ({ prevTime }) => {
   const setEditTime = useTodoListStore((state) => state.setEditTime);
-  const getInitialTimeDate = (timeString) => {
-    const [hours, minutes] = timeString.split(':');
-    const time = new Date();
-    time.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0);
-    return time;
-  };
-  const initTime = getInitialTimeDate(prevTime);
+  const initTime = new Date(prevTime);
   const onTimeChange = (selectedTime) => {
-    setEditTime(selectedTime.toString().slice(16, 21));
+    setEditTime(selectedTime.getTime());
   };
 
   return (

@@ -4,6 +4,7 @@ import TodayEffort from '../components/Home/TodayEffort';
 import COLORS from '../constants/colors';
 import Header from '../components/@common/Header';
 import TodoList from '../components/Home/TodoList';
+import { ScrollView } from 'react-native';
 
 const HomeView = styled.View`
   background-color: ${COLORS.mainBackGround};
@@ -13,9 +14,11 @@ const HomeView = styled.View`
 const Home = () => {
   return (
     <HomeView>
-      <Header arrow={false} volume={false} search={true} moreVert={true} />
-      <TodayEffort />
-      <TodoList />
+      <ScrollView>
+        <Header arrow={false} volume={false} search={true} moreVert={true} />
+        <TodayEffort />
+        <TodoList />
+      </ScrollView>
     </HomeView>
   );
 };

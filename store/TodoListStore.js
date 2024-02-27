@@ -15,7 +15,7 @@ const useTodoListStore = create((set) => ({
     {
       id: 0,
       title: '토익 영어 단어 공부',
-      time: '11:00',
+      time: 1709034044010,
       type: '공부',
       content: '토익 voca 챕터 1~12까지 몽땅 연필',
       isSuccess: true,
@@ -23,7 +23,7 @@ const useTodoListStore = create((set) => ({
     {
       id: 1,
       title: '헬스 - 등 하는 날',
-      time: '12:00',
+      time: 1709034044011,
       type: '운동',
       content: '유산소 30분, 무산소 1시간, 식후 프로틴 필수',
       isSuccess: false,
@@ -31,7 +31,7 @@ const useTodoListStore = create((set) => ({
     {
       id: 2,
       title: '점심엔 햄버거',
-      time: '13:00',
+      time: 1709034044012,
       type: '밥',
       content: '야무지게 먹어야지~',
       isSuccess: false,
@@ -45,17 +45,19 @@ const useTodoListStore = create((set) => ({
     })),
   updateTodo: (id) =>
     set((prev) => ({
-      todoList: prev.todoList.map((todo) =>
-        todo.id === id
-          ? {
-              ...todo,
-              title: prev.editTitle,
-              time: prev.editTime,
-              type: prev.editType,
-              content: prev.editContent,
-            }
-          : todo,
-      ),
+      todoList: prev.todoList
+        .map((todo) =>
+          todo.id === id
+            ? {
+                ...todo,
+                title: prev.editTitle,
+                time: prev.editTime,
+                type: prev.editType,
+                content: prev.editContent,
+              }
+            : todo,
+        )
+        .sort((a, b) => a.time - b.time),
     })),
 }));
 

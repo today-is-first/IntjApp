@@ -32,17 +32,17 @@ const CardLeftWrapper = styled.View`
   gap: 12px;
 `;
 
-const TodoCardTime = styled.Text`
+const TodoCardTime = React.memo(styled.Text`
   color: ${(props) => (props.isSuccess ? COLORS.grayText : COLORS.pointColor)};
   font-size: 14px;
   font-weight: 400;
-`;
+`);
 
-const TodoCardText = styled.Text`
+const TodoCardText = React.memo(styled.Text`
   color: ${(props) => (props.isSuccess ? COLORS.grayText : COLORS.pointColor)};
   font-size: 16px;
   font-weight: 600;
-`;
+`);
 
 const icons = {
   공부: StudyIcon,
@@ -71,7 +71,13 @@ const TodoCard = ({ id, title, time, type, content, isSuccess }) => {
       <PreviewWrapper>
         <CardLeftWrapper>
           {IconSwitcher({ type, isSuccess: isSuccess })}
-          <TodoCardTime isSuccess={isSuccess}>{time}</TodoCardTime>
+          <TodoCardTime isSuccess={isSuccess}>
+            {new Date(parseInt(time)).toLocaleTimeString('ko-KR', {
+              hour: '2-digit',
+              minute: '2-digit',
+              hourCycle: 'h23',
+            })}
+          </TodoCardTime>
         </CardLeftWrapper>
         <TodoCardText isSuccess={isSuccess}>
           {title.length > 11 ? title.slice(0, 11) + '...' : title}

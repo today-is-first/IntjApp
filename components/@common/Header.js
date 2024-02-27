@@ -65,4 +65,4 @@ const Header = ({ arrow, volume, search, moreVert }) => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
