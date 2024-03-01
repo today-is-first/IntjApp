@@ -26,7 +26,7 @@ const TodoContent = styled.Text`
 
 const EditButton = styled(TouchableOpacity)`
   margin-top: 6px;
-  padding: 8px 18px 12px;
+  padding: 8px 18px;
   border-radius: 12px;
   background-color: ${(props) =>
     props.isSuccess ? COLORS.grayText : COLORS.pointColor};
