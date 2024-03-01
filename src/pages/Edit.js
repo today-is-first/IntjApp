@@ -9,7 +9,6 @@ import EditContent from '@components/Edit/EditContent';
 import useTodoListStore from '@store/TodoListStore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
-import SaveIcon from '@svg/todoList/SaveIcon';
 
 const EditPageView = styled.View`
   background-color: ${COLORS.mainBackGround};
@@ -20,14 +19,20 @@ const EditView = styled.View``;
 
 const SubmitButton = styled(TouchableOpacity)`
   margin: auto;
-  margin-bottom: 24px;
-  padding: 12px 18px;
-  border-width: 1px;
-  border-radius: 12px;
-  border-color: ${COLORS.pointColor};
-  background-color: ${COLORS.textWhite};
+  margin-bottom: 36px;
   justify-content: center;
   align-items: center;
+  padding: 8px 16px;
+  border-bottom-width: 1px;
+  border-bottom-color: ${COLORS.textWhite};
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+`;
+
+const SaveText = styled.Text`
+  font-family: 'Lora';
+  font-size: 20px;
+  color: ${COLORS.textWhite};
 `;
 
 const Edit = () => {
@@ -55,7 +60,7 @@ const Edit = () => {
               navigation.navigate('Home');
             }}
           >
-            <SaveIcon width="36px" height="36px" fill={COLORS.pointColor} />
+            <SaveText>done?</SaveText>
           </SubmitButton>
         ) : (
           ''

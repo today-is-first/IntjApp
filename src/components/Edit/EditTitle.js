@@ -8,18 +8,19 @@ const EditTitleView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};
   margin: 0px 24px 0px;
   padding: 18px 30px;
-  border-radius: 24px;
-  border-top-color: rgba(1, 0, 254, 0.5);
-  border-left-color: rgba(1, 0, 254, 0.5);
-  border-bottom-color: rgba(1, 0, 254, 1);
-  border-right-color: rgba(1, 0, 254, 1);
+  border-radius: 8px;
+  border-top-color: rgba(242, 242, 242, 1);
+  border-left-color: rgba(242, 242, 242, 1);
+  border-bottom-color: rgba(16, 16, 16, 1);
+  border-right-color: rgba(16, 16, 16, 1);
   border-width: ${(props) => (props.page.length > 0 ? '0px' : '1px')};
 `;
 const EditText = styled.Text`
+  font-family: 'Lora';
   font-size: 20px;
   color: ${(props) =>
-    props.page.length > 0 ? COLORS.grayText : COLORS.pointColor};
-  font-weight: 700;
+    props.page.length > 0 ? COLORS.grayText : COLORS.mainBackGround};
+  font-weight: 400;
   margin-bottom: 16px;
 `;
 
@@ -39,7 +40,7 @@ const EditTitle = ({ setPage, page, title }) => {
       onPress={() => inputRef.current && inputRef.current.focus()}
       page={page}
     >
-      <EditText page={page}>오늘 할 것</EditText>
+      <EditText page={page}>Todo</EditText>
       <EditContent
         ref={inputRef}
         onChangeText={setText}

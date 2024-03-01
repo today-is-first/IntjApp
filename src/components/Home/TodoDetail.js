@@ -5,12 +5,10 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import useTodoListStore from '@store/TodoListStore';
 
-// 절대 경로 설정
-
 const TodoDetailView = styled.View`
   margin-top: 16px;
   border-top-color: ${(props) =>
-    props.isSuccess ? COLORS.grayText : COLORS.pointColor};
+    props.isSuccess ? COLORS.grayText : COLORS.mainBackGround};
   border-top-width: 1px;
 `;
 const ContentView = styled.View`
@@ -18,7 +16,8 @@ const ContentView = styled.View`
 `;
 const TodoContent = styled.Text`
   align-self: center;
-  color: ${(props) => (props.isSuccess ? COLORS.grayText : COLORS.pointColor)};
+  color: ${(props) =>
+    props.isSuccess ? COLORS.grayText : COLORS.mainBackGround};
   text-align: center;
   margin: 12px 0;
   max-width: 210px;
@@ -26,16 +25,20 @@ const TodoContent = styled.Text`
 
 const EditButton = styled(TouchableOpacity)`
   margin-top: 6px;
-  padding: 8px 18px;
-  border-radius: 12px;
-  background-color: ${(props) =>
-    props.isSuccess ? COLORS.grayText : COLORS.pointColor};
+  padding: 4px 18px;
+  border-radius: 4px;
+  border-bottom-width: 1px;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-color: ${(props) =>
+    props.isSuccess ? COLORS.grayText : COLORS.mainBackGround};
 `;
 
 const EditButtonText = styled.Text`
-  color: ${COLORS.textWhite};
+  font-family: 'Lora';
+  color: ${COLORS.mainBackGround};
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 const ButtonWrapper = styled.View`
@@ -56,10 +59,10 @@ const TodoDetail = ({ id, content, isSuccess }) => {
       ) : (
         <ButtonWrapper>
           <EditButton onPress={() => navigation.navigate('Edit', { id: id })}>
-            <EditButtonText>수정</EditButtonText>
+            <EditButtonText>Edit?</EditButtonText>
           </EditButton>
           <EditButton onPress={() => setSuccess(id)}>
-            <EditButtonText>성공</EditButtonText>
+            <EditButtonText>Success?</EditButtonText>
           </EditButton>
         </ButtonWrapper>
       )}

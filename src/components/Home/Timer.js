@@ -7,7 +7,7 @@ import PauseIcon from '@svg/timer/PauseIcon';
 import RestartIcon from '@svg/timer/RestartIcon';
 
 const TodayEffortTimer = styled.View`
-  margin-top: 24px;
+  margin-top: 18px;
   align-items: flex-end;
 `;
 
@@ -18,7 +18,7 @@ const TimerText = styled.Text`
 `;
 
 const TimerButtonWrapper = styled.View`
-  margin-top: 18px;
+  margin-top: 4px;
   flex-direction: row;
   align-self: center;
   justify-content: space-between;

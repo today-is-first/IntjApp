@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import COLORS from '@constants/colors';
 import GenerateIcon from '@svg/footer/GenerateIcon';
@@ -7,6 +7,7 @@ import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const FooterView = styled.View`
+  padding: 4px 0;
   position: absolute;
   background-color: ${COLORS.mainBackGround};
   bottom: 0;
@@ -32,22 +33,49 @@ const IconTouch = styled(TouchableOpacity)`
 `;
 
 const IconText = styled.Text`
-  color: ${COLORS.textWhite};
+  font-family: 'Lora';
+  color: ${(props) =>
+    props.selectedPage === props.page ? COLORS.textWhite : COLORS.grayText};
   margin-top: 2px;
 `;
 
 const Footer = () => {
   const navigation = useNavigation();
+  const [selectedPage, setSelectedPage] = useState('Home');
   return (
     <FooterView>
       <IconWrapper>
-        <IconTouch onPress={() => navigation.navigate('Home')}>
-          <HomeIcon width="24px" height="24px" fill={COLORS.textWhite} />
-          <IconText>home</IconText>
+        <IconTouch
+          onPress={() => {
+            navigation.navigate('Home');
+            setSelectedPage('Home');
+          }}
+        >
+          <HomeIcon
+            width="24px"
+            height="24px"
+            fill={selectedPage === 'Home' ? COLORS.textWhite : COLORS.grayText}
+          />
+          <IconText selectedPage={selectedPage} page="Home">
+            home
+          </IconText>
         </IconTouch>
-        <IconTouch onPress={() => navigation.navigate('Generate')}>
-          <GenerateIcon width="24px" height="24px" fill={COLORS.textWhite} />
-          <IconText>generate</IconText>
+        <IconTouch
+          onPress={() => {
+            navigation.navigate('Generate');
+            setSelectedPage('Generate');
+          }}
+        >
+          <GenerateIcon
+            width="24px"
+            height="24px"
+            fill={
+              selectedPage === 'Generate' ? COLORS.textWhite : COLORS.grayText
+            }
+          />
+          <IconText selectedPage={selectedPage} page="Generate">
+            generate
+          </IconText>
         </IconTouch>
       </IconWrapper>
     </FooterView>

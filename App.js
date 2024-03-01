@@ -31,6 +31,7 @@ export default function App() {
     async function loadFontsAsync() {
       await Font.loadAsync({
         Pretendard: require('@fonts/Pretendard-Regular.ttf'),
+        Lora: require('@fonts/Lora-VariableFont_wght.ttf'),
       });
       setFontsLoaded(true);
     }

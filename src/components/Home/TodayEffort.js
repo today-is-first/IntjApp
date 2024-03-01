@@ -5,11 +5,10 @@ import Timer from '@components/Home/Timer';
 
 const TodayEffortView = styled.View`
   margin: 0 18px;
-  border-radius: 24px;
   background-color: ${COLORS.bottomSheetBackGround};
   justify-content: center;
   padding: 18px 30px;
-  border-radius: 24px;
+  border-radius: 12px;
   border-left-color: rgba(160, 160, 160, 0.2);
   border-top-color: rgba(160, 160, 160, 0.2);
   border-right-color: rgba(60, 60, 60, 0.2);
@@ -24,24 +23,30 @@ const TodayEffortTopView = styled.View`
 `;
 
 const TodayEffortTitle = styled.Text`
+  font-family: 'Lora';
   color: ${COLORS.textWhite};
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 const TodayDate = styled.Text`
+  font-family: 'Lora';
   color: ${COLORS.textWhite};
   font-size: 16px;
 `;
+
+function formatDate(date) {
+  return `${date.toLocaleDateString('en-US', {
+    weekday: 'short',
+  })}, ${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
+}
 
 const TodayEffort = () => {
   return (
     <TodayEffortView>
       <TodayEffortTopView>
-        <TodayEffortTitle>오늘의 노력</TodayEffortTitle>
-        <TodayDate>
-          {new Date().toISOString().slice(5, 10).split('-').join('월 ')}일
-        </TodayDate>
+        <TodayEffortTitle>Today</TodayEffortTitle>
+        <TodayDate>{formatDate(new Date())}</TodayDate>
       </TodayEffortTopView>
       <Timer />
     </TodayEffortView>

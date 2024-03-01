@@ -9,13 +9,13 @@ import TodoDetail from '@components/Home/TodoDetail';
 
 const TodoCardView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};
-  margin: 24px 6px 0px;
+  margin: 8px 6px 0px;
   padding: 16px 24px;
-  border-radius: 24px;
-  border-top-color: rgba(1, 0, 254, 0.5);
-  border-left-color: rgba(1, 0, 254, 0.5);
-  border-bottom-color: rgba(1, 0, 254, 1);
-  border-right-color: rgba(1, 0, 254, 1);
+  border-radius: 8px;
+  border-top-color: rgba(242, 242, 242, 1);
+  border-left-color: rgba(242, 242, 242, 1);
+  border-bottom-color: rgba(16, 16, 16, 1);
+  border-right-color: rgba(16, 16, 16, 1);
   border-width: ${(props) => (props.isSuccess ? '0' : '1px')};
 `;
 
