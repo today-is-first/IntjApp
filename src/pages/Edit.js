@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import COLORS from '../constants/colors';
-import Header from '../components/@common/Header';
-import EditTitle from '../components/Edit/EditTitle';
-import EditTime from '../components/Edit/EditTime';
-import EditType from '../components/Edit/EditType';
-import EditContent from '../components/Edit/EditContent';
-import useTodoListStore from '../store/TodoListStore';
+import COLORS from '@constants/colors';
+import Header from '@components/@common/Header';
+import EditTitle from '@components/Edit/EditTitle';
+import EditTime from '@components/Edit/EditTime';
+import EditType from '@components/Edit/EditType';
+import EditContent from '@components/Edit/EditContent';
+import useTodoListStore from '@store/TodoListStore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native';
-import SaveIcon from '../assets/svgs/todoList/SaveIcon';
+import SaveIcon from '@svg/todoList/SaveIcon';
 
 const EditPageView = styled.View`
   background-color: ${COLORS.mainBackGround};

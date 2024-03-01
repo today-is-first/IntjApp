@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
-import COLORS from '../../constants/colors';
+import COLORS from '@constants/colors';
 import { TouchableOpacity } from 'react-native';
-import ArrowRightIcon from '../../assets/svgs/timer/ArrowRightIcon';
-import PauseIcon from '../../assets/svgs/timer/PauseIcon';
-import RestartIcon from '../../assets/svgs/timer/RestartIcon';
+import ArrowRightIcon from '@svg/timer/ArrowRightIcon';
+import PauseIcon from '@svg/timer/PauseIcon';
+import RestartIcon from '@svg/timer/RestartIcon';
 
 const TodayEffortTimer = styled.View`
   margin-top: 24px;

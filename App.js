@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import COLORS from './constants/colors';
+import COLORS from '@constants/colors';
 import * as Font from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './pages/Home';
-import Edit from './pages/Edit';
+import Home from '@pages/Home';
+import Edit from '@pages/Edit';
 
 async function loadFonts() {
   await Font.loadAsync({
-    Pretendard: require('./assets/fonts/Pretendard-Regular.ttf'),
+    Pretendard: require('@fonts/Pretendard-Regular.ttf'),
   });
 }
 

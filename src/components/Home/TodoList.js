@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import COLORS from '../../constants/colors';
-import TodoCard from './TodoCard';
-import useTodoListStore from '../../store/TodoListStore';
+import COLORS from '@constants/colors';
+import TodoCard from '@components/Home/TodoCard';
+import useTodoListStore from '@store/TodoListStore';
 
 const TodoListView = styled.View`
   margin: 24px 18px;

@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
-import COLORS from '../../constants/colors';
-import FoodIcon from '../../assets/svgs/todoList/FoodIcon';
-import SportIcon from '../../assets/svgs/todoList/SportIcon';
-import StudyIcon from '../../assets/svgs/todoList/StudyIcon';
-import useTodoListStore from '../../store/TodoListStore';
+import COLORS from '@constants/colors';
+import FoodIcon from '@svg/todoList/FoodIcon';
+import SportIcon from '@svg/todoList/SportIcon';
+import StudyIcon from '@svg/todoList/StudyIcon';
+import useTodoListStore from '@store/TodoListStore';
 
 const EditTypeView = styled.View`
   background-color: ${COLORS.textWhite};

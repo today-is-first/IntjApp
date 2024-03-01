@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import COLORS from '../../constants/colors';
-import Timer from './Timer';
+import COLORS from '@constants/colors';
+import Timer from '@components/Home/Timer';
 
 const TodayEffortView = styled.View`
   margin: 0 18px;

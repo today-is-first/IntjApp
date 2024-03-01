@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import ArrowLeftIcon from '../../assets/svgs/header/ArrowLeftIcon';
-import VolumeUpIcon from '../../assets/svgs/header/VolumeUpIcon';
-import MoreVertIcon from '../../assets/svgs/header/MoreVertIcon';
-import SearchIcon from '../../assets/svgs/header/SearchIcon';
-import COLORS from '../../constants/colors';
+import ArrowLeftIcon from '@svg/header/ArrowLeftIcon';
+import VolumeUpIcon from '@svg/header/VolumeUpIcon';
+import MoreVertIcon from '@svg/header/MoreVertIcon';
+import SearchIcon from '@svg/header/SearchIcon';
+import COLORS from '@constants/colors';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 

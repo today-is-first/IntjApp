@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
-import COLORS from '../../constants/colors';
-import useTodoListStore from '../../store/TodoListStore';
+import COLORS from '@constants/colors';
+import useTodoListStore from '@store/TodoListStore';
 
 const EditTitleView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import DateTimePicker from '@mohalla-tech/react-native-date-time-picker';
-import COLORS from '../constants/colors';
-import useTodoListStore from '../store/TodoListStore';
+import COLORS from '@constants/colors';
+import useTodoListStore from '@store/TodoListStore';
 
 const PickerView = styled.View``;
 

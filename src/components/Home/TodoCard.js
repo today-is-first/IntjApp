@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import COLORS from '../../constants/colors';
+import COLORS from '@constants/colors';
 import { TouchableOpacity } from 'react-native';
-import FoodIcon from '../../assets/svgs/todoList/FoodIcon';
-import SportIcon from '../../assets/svgs/todoList/SportIcon';
-import StudyIcon from '../../assets/svgs/todoList/StudyIcon';
-import TodoDetail from './TodoDetail';
+import FoodIcon from '@svg/todoList/FoodIcon';
+import SportIcon from '@svg/todoList/SportIcon';
+import StudyIcon from '@svg/todoList/StudyIcon';
+import TodoDetail from '@components/Home/TodoDetail';
 
 const TodoCardView = styled(TouchableOpacity)`
   background-color: ${COLORS.textWhite};

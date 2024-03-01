@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
-import COLORS from '../../constants/colors';
-import Picker from '../../utils/Picker';
+import COLORS from '@constants/colors';
+import Picker from '@utils/Picker';
 
 const EditTimeView = styled.View`
   background-color: ${COLORS.textWhite};

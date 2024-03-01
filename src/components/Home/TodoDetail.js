@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import COLORS from '../../constants/colors';
+import COLORS from '@constants/colors';
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import useTodoListStore from '../../store/TodoListStore';
+import useTodoListStore from '@store/TodoListStore';
+
+// 절대 경로 설정
 
 const TodoDetailView = styled.View`
   margin-top: 16px;
@@ -24,31 +26,16 @@ const TodoContent = styled.Text`
 
 const EditButton = styled(TouchableOpacity)`
   margin-top: 6px;
-  padding: 8px 18px;
+  padding: 8px 18px 12px;
   border-radius: 12px;
   background-color: ${(props) =>
     props.isSuccess ? COLORS.grayText : COLORS.pointColor};
-  align-self: flex-end;
-  align-items: center;
-  justify-content: center;
-`;
-
-const SuccessButton = styled(TouchableOpacity)`
-  margin-top: 6px;
-  padding: 8px 18px;
-  border-radius: 12px;
-  background-color: ${(props) =>
-    props.isSuccess ? COLORS.grayText : COLORS.pointColor};
-  align-self: flex-end;
-  align-items: center;
-  justify-content: center;
 `;
 
 const EditButtonText = styled.Text`
   color: ${COLORS.textWhite};
-  text-align: center;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 500;
 `;
 
 const ButtonWrapper = styled.View`
@@ -71,9 +58,9 @@ const TodoDetail = ({ id, content, isSuccess }) => {
           <EditButton onPress={() => navigation.navigate('Edit', { id: id })}>
             <EditButtonText>수정</EditButtonText>
           </EditButton>
-          <SuccessButton onPress={() => setSuccess(id)}>
+          <EditButton onPress={() => setSuccess(id)}>
             <EditButtonText>성공</EditButtonText>
-          </SuccessButton>
+          </EditButton>
         </ButtonWrapper>
       )}
     </TodoDetailView>

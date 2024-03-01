@@ -5,7 +5,7 @@ const useTodoListStore = create((set) => ({
   increaseTodoId: (id) => set((prev) => ({ todoId: prev.todoId + 1 })),
   editTitle: '',
   setEditTitle: (val) => set({ editTitle: val }),
-  editTime: '',
+  editTime: new Date().setMinutes(0),
   setEditTime: (val) => set({ editTime: val }),
   editType: '',
   setEditType: (val) => set({ editType: val }),
@@ -70,7 +70,7 @@ const useTodoListStore = create((set) => ({
           type: prev.editType,
           content: prev.editContent,
         },
-      ],
+      ].sort((a, b) => a.time - b.time),
       todoId: prev.todoId + 1,
     })),
 }));
