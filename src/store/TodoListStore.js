@@ -1,6 +1,16 @@
 import { create } from 'zustand';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const useTodoListStore = create((set) => ({
+const saveData = async (data) => {
+  try {
+    const jsonValue = JSON.stringify(data);
+    await AsyncStorage.setItem('@todoList', jsonValue);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const useTodoListStore = create((set, get) => ({
   todoId: 3,
   increaseTodoId: (id) => set((prev) => ({ todoId: prev.todoId + 1 })),
   editTitle: '',
@@ -11,68 +21,80 @@ const useTodoListStore = create((set) => ({
   setEditType: (val) => set({ editType: val }),
   editContent: '',
   setEditContent: (val) => set({ editContent: val }),
-  todoList: [
-    {
-      id: 0,
-      title: '토익 영어 단어 공부',
-      time: 1709034044010,
-      type: '공부',
-      content: '토익 voca 챕터 1~12까지 몽땅 연필',
-      isSuccess: true,
-    },
-    {
-      id: 1,
-      title: '헬스 - 등 하는 날',
-      time: 1709034044011,
-      type: '운동',
-      content: '유산소 30분, 무산소 1시간, 식후 프로틴 필수',
-      isSuccess: false,
-    },
-    {
-      id: 2,
-      title: '점심엔 햄버거',
-      time: 1709034044012,
-      type: '밥',
-      content: '야무지게 먹어야지~',
-      isSuccess: false,
-    },
-  ],
+  todoList: [],
   setSuccess: (id) =>
-    set((prev) => ({
-      todoList: prev.todoList.map((todo) =>
-        todo.id === id ? { ...todo, isSuccess: true } : todo,
-      ),
-    })),
+    set((prev) => {
+      const updatedCalendarTodoList = { ...prev.calendarTodoList };
+      Object.keys(updatedCalendarTodoList).forEach((date) => {
+        updatedCalendarTodoList[date] = updatedCalendarTodoList[date].map(
+          (todo) => (todo.id === id ? { ...todo, isSuccess: true } : todo),
+        );
+      });
+      setTimeout(() => get().saveToStorage(), 0);
+      return { calendarTodoList: updatedCalendarTodoList };
+    }),
   updateTodo: (id) =>
-    set((prev) => ({
-      todoList: prev.todoList
-        .map((todo) =>
-          todo.id === id
-            ? {
-                ...todo,
-                title: prev.editTitle,
-                time: prev.editTime,
-                type: prev.editType,
-                content: prev.editContent,
-              }
-            : todo,
-        )
-        .sort((a, b) => a.time - b.time),
-    })),
+    set((prev) => {
+      const updatedCalendarTodoList = Object.entries(
+        prev.calendarTodoList,
+      ).reduce((acc, [date, todos]) => {
+        acc[date] = todos
+          .map((todo) =>
+            todo.id === id
+              ? {
+                  ...todo,
+                  title: prev.editTitle,
+                  time: prev.editTime,
+                  type: prev.editType,
+                  content: prev.editContent,
+                }
+              : todo,
+          )
+          .sort((a, b) => a.time - b.time);
+        return acc;
+      }, {});
+      setTimeout(() => get().saveToStorage(), 0);
+      return { calendarTodoList: updatedCalendarTodoList };
+    }),
   addTodo: () =>
-    set((prev) => ({
-      todoList: [
-        ...prev.todoList,
-        {
-          id: prev.todoId + 1,
-          title: prev.editTitle,
-          time: prev.editTime,
-          type: prev.editType,
-          content: prev.editContent,
-        },
-      ].sort((a, b) => a.time - b.time),
-      todoId: prev.todoId + 1,
-    })),
+    set((prev) => {
+      const selectedDate = prev.selectedDate;
+      const newTodo = {
+        id: prev.todoId + 1,
+        title: prev.editTitle,
+        time: prev.editTime,
+        type: prev.editType,
+        content: prev.editContent,
+      };
+
+      const existingTodos = prev.calendarTodoList[selectedDate];
+
+      const updatedTodos = existingTodos
+        ? [...existingTodos, newTodo].sort((a, b) => a.time - b.time)
+        : [newTodo];
+
+      const updatedCalendarTodoList = {
+        ...prev.calendarTodoList,
+        [selectedDate]: updatedTodos,
+      };
+      setTimeout(() => get().saveToStorage(), 0);
+      return {
+        ...prev,
+        calendarTodoList: updatedCalendarTodoList,
+        todoId: prev.todoId + 1,
+      };
+    }),
+
+  calendarTodoList: {},
+  selectedDate: new Date().toISOString().slice(0, 10),
+  setSelectedDate: (date) => set(() => ({ selectedDate: date })),
+  saveToStorage: async () => {
+    const state = get();
+    await saveData({
+      calendarTodoList: state.calendarTodoList,
+      todoId: state.todoId,
+    });
+  },
 }));
 
 export default useTodoListStore;

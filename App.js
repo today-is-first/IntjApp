@@ -9,6 +9,9 @@ import Home from '@pages/Home';
 import Edit from '@pages/Edit';
 import Generate from '@pages/Generate';
 import Footer from '@components/@common/Footer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useTodoListStore from '@store/TodoListStore';
+import Loading from '@components/@common/Loading';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,8 +27,26 @@ const customStackNavigaionOptions = {
   headerShown: false,
 };
 
+const loadData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('@todoList');
+    console.log(`loadData : ${jsonValue}`);
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+};
+
+const initializeStore = async () => {
+  const savedData = await loadData();
+  if (savedData) {
+    useTodoListStore.setState({ ...savedData });
+  }
+};
+
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     async function loadFontsAsync() {
@@ -33,14 +54,15 @@ export default function App() {
         Pretendard: require('@fonts/Pretendard-Regular.ttf'),
         Lora: require('@fonts/Lora-VariableFont_wght.ttf'),
       });
-      setFontsLoaded(true);
+      setDataLoaded(true);
     }
 
     loadFontsAsync();
+    initializeStore();
   }, []);
 
-  if (!fontsLoaded) {
-    return <Text>Fonts are loading...</Text>;
+  if (!dataLoaded) {
+    return <Loading />;
   }
 
   return (

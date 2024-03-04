@@ -40,13 +40,15 @@ const Edit = () => {
   const [page, setPage] = useState([]);
   const route = useRoute();
   const id = route.params?.id;
-  const [todoList, updateTodo, addTodo] = useTodoListStore((state) => [
-    state.todoList,
-    state.updateTodo,
-    state.addTodo,
-  ]);
+  const [updateTodo, addTodo, calendarTodoList, selectedDate] =
+    useTodoListStore((state) => [
+      state.updateTodo,
+      state.addTodo,
+      state.calendarTodoList,
+      state.selectedDate,
+    ]);
   const todo = id
-    ? todoList.find((el) => el.id === id)
+    ? calendarTodoList[selectedDate].find((el) => el.id === id)
     : { title: '', time: '', type: '', content: '' };
 
   return (

@@ -42,7 +42,7 @@ const EditText = styled.Text`
   color: ${(props) =>
     props.page.length > 1 ? COLORS.grayText : COLORS.mainBackGround};
   font-weight: 400;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 `;
 
 const EditTime = ({ setPage, page, time }) => {
