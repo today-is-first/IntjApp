@@ -11,7 +11,7 @@ const saveData = async (data) => {
 };
 
 const useTodoListStore = create((set, get) => ({
-  todoId: 3,
+  todoId: 0,
   increaseTodoId: (id) => set((prev) => ({ todoId: prev.todoId + 1 })),
   editTitle: '',
   setEditTitle: (val) => set({ editTitle: val }),

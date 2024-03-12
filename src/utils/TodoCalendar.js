@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Calendar } from 'react-native-calendars';
 import COLORS from '@constants/colors';
-import useTodoListStore from '../store/TodoListStore';
+import useTodoListStore from '@store/TodoListStore';
 
 const CalendarView = styled.View`
   margin: 0 18px;

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Text } from 'react-native';
 import styled from 'styled-components';
 import COLORS from '@constants/colors';
 import * as Font from 'expo-font';
@@ -12,25 +11,25 @@ import Footer from '@components/@common/Footer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useTodoListStore from '@store/TodoListStore';
 import Loading from '@components/@common/Loading';
+import { StatusBar } from 'expo-status-bar';
 
 const Stack = createNativeStackNavigator();
 
 const AppView = styled.View`
   font-family: 'Pretendard';
   background-color: ${COLORS.mainBackGround};
-  flex: 1;
   padding: 0;
   margin: 0 0 64px 0;
+  flex: 1;
 `;
 
-const customStackNavigaionOptions = {
+const customStackNavigationOptions = {
   headerShown: false,
 };
 
 const loadData = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('@todoList');
-    console.log(`loadData : ${jsonValue}`);
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (e) {
     console.error(e);
@@ -68,9 +67,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <AppView>
+        <StatusBar style="light" />
         <Stack.Navigator
           initialRouteName="Home"
-          screenOptions={customStackNavigaionOptions}
+          screenOptions={customStackNavigationOptions}
         >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Edit" component={Edit} />

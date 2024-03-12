@@ -5,8 +5,7 @@ import COLORS from '@constants/colors';
 import Header from '@components/@common/Header';
 import TodoList from '@components/Home/TodoList';
 import { ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import TodoCalendar from '../utils/TodoCalendar';
+import TodoCalendar from '@utils/TodoCalendar';
 
 const HomeView = styled.View`
   background-color: ${COLORS.mainBackGround};
@@ -14,7 +13,6 @@ const HomeView = styled.View`
 `;
 
 const Home = () => {
-  const navigation = useNavigation();
   return (
     <HomeView>
       <ScrollView>

@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native';
 import ArrowRightIcon from '@svg/timer/ArrowRightIcon';
 import PauseIcon from '@svg/timer/PauseIcon';
 import RestartIcon from '@svg/timer/RestartIcon';
+import useTodoTimerStore from '@store/TodoTimer';
 
 const TodayEffortTimer = styled.View`
   margin-top: 18px;
@@ -33,20 +34,25 @@ const ArrowTouchWrapper = styled(TouchableOpacity)`
 `;
 
 const Timer = () => {
-  const [time, setTime] = useState(0);
   const [timeId, setTimeId] = useState(null);
-
+  const [effortTime, setEffortTime, increaseEffortTime] = useTodoTimerStore(
+    (state) => [
+      state.effortTime,
+      state.setEffortTime,
+      state.increaseEffortTime,
+    ],
+  );
   const handleStart = useCallback(() => {
     if (!timeId) {
       const id = setInterval(() => {
-        setTime((prev) => prev + 1);
+        increaseEffortTime();
       }, 1000);
       setTimeId(id);
     }
   }, [timeId]);
 
   const handleReset = useCallback(() => {
-    setTime(0);
+    setEffortTime(0);
     if (timeId) {
       clearInterval(timeId);
     }
@@ -73,7 +79,7 @@ const Timer = () => {
 
   return (
     <TodayEffortTimer>
-      <TimerText>{formatTime(time)}</TimerText>
+      <TimerText>{formatTime(effortTime)}</TimerText>
       <TimerButtonWrapper>
         <TimerTouchWrapper onPress={handleReset}>
           <RestartIcon width="30px" height="30px" fill={COLORS.iconWhite} />

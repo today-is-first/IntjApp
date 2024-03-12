@@ -58,6 +58,7 @@ const IconSwitcher = ({ type, isSuccess }) => {
 
 const TodoCard = ({ id, title, time, type, content, isSuccess }) => {
   const [isPressed, setIsPressed] = useState(false);
+  const checkEnterTitle = title.split('\n').join(' ');
   return (
     <TodoCardView
       isSuccess={isSuccess}
@@ -75,7 +76,9 @@ const TodoCard = ({ id, title, time, type, content, isSuccess }) => {
           </TodoCardTime>
         </CardLeftWrapper>
         <TodoCardText isSuccess={isSuccess}>
-          {title.length > 11 ? title.slice(0, 11) + '...' : title}
+          {checkEnterTitle.length > 11
+            ? checkEnterTitle.slice(0, 11) + '...'
+            : checkEnterTitle}
         </TodoCardText>
       </PreviewWrapper>
       {isPressed ? (
